@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="jquery-ui-1.11.4.custom/jquery-ui.css">
+<link rel="stylesheet"
+	href="jquery-ui-1.11.4.custom/jquery-ui.theme.css">
+<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.css">
+<link rel="stylesheet"
+	href="bootstrap-3.3.5-dist/css/bootstrap-theme.css">
+<link rel="stylesheet" href="general.css">
+
+<script src="jquery-2.1.4.min.js"></script>
+<script src="jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<script src="bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+<title>Inventario de materiales y cristaleria</title>
+
+
+</head>
+<body>
+
+	<input type="text" name="user" id="user" value="<?php echo $user; ?>"
+		style="display: none;" />
+	<!--[if lt IE 10]>
+            <p class="chromeframe">Estas usando un navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a></p>
+        <![endif]-->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand dropdown-toggle"
+				data-toggle="dropdown">Menu <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="entradaMateriales.html"> Nuevo Material</a></li>
+				<li><a href="prestamo.html"> Prestamo Material</a></li>
+				<li><a href="salidaMateriales.html"> Otras Salidas</a></li>
+			</ul>
+		</div>
+
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav nav-center">
+				<li>Inventario de materiales y cristaleria</li>
+			</ul>
+			<div class="navbar-right">
+				<a href="#" class="navbar-brand dropdown-toggle"
+					data-toggle="dropdown">Usuario <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<div class="row">
+		<div id="logo">
+			<img src="img/UCA2015.png" alt="UCA logo" height="125px"
+				width="100px">
+			<h1>Universidad centroamericana José Simeón Cañas</h1>
+			<h2>Departamento de Ingenieria de Procesos y Ciencias
+				Ambientales</h2>
+			<h5>LABORATORIO DE TECNOLOGIA DE PROCESOS</h5>
+			<h5>Ficha de salida de materiales</h5>
+		</div>
+	</div>
+	<div id="wrapper" class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8 well">
+			<form class="form-horizontal">
+
+				<div class="form-group">
+					<label for="codigoMaterial" class="col-sm-2 control-label">Codigo:</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="codigoMaterial"
+							placeholder="Codigo">
+					</div>
+					<label for="nombreMaterial" class="col-sm-2 control-label">Nombre
+						material:</label>
+					<div class="col-sm-6">
+						<select class="form-control" id="nombreMaterial">
+							<option>Mateial 1</option>
+							<option>Material 2</option>
+							<option>Material 3</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="status" class="col-sm-2 control-label">Status:</label>
+					<div class="col-sm-4">
+						<select class="form-control" id="status">
+							<option>Prestado</option>
+							<option>Dañado</option>
+						</select>
+					</div>
+					<label for="tipoProducto" class="col-sm-2 control-label">Tipo
+						producto:</label>
+					<div class="col-sm-4">
+						<select class="form-control" id="tipoProducto">
+							<option>Cristaleria</option>
+							<option>Otros</option>
+						</select>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label for="tipoSalida" class="col-sm-2 control-label">Tipo
+						salida:</label>
+					<div class="col-sm-4">
+						<select class="form-control" id="tipoSalida">
+							<option>Reposicion</option>
+							<option>Donacion</option>
+						</select>
+					</div>
+					<label for="detalleTipoSalida" class="col-sm-2 control-label">Detalle
+						salida:</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="detalleTipoEntrada"
+							placeholder="Detalle salida">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="ubicacion" class="col-sm-2 control-label">Ubicacion:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="ubicacion"
+							placeholder="Ubicacion">
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-default">
+						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+						Guardar
+					</button>
+				</div>
+
+			</form>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+
+	<script>
+		
+	</script>
+</body>
+</html>
+
+
+
+
