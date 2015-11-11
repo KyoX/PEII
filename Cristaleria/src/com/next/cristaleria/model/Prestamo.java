@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Prestamo {
 	private long id;
-	private TipoPrestamo prestamo;
+	private TipoPrestamo tipoPrestamo;
 	private String prestadoA;
 	private Date prestado;
 	private Date devuelto;
@@ -33,7 +33,7 @@ public class Prestamo {
 			Material material, Ciclo ciclo) {
 		super();
 		this.id = id;
-		this.prestamo = prestamo;
+		this.tipoPrestamo = prestamo;
 		this.prestadoA = prestadoA;
 		this.prestado = prestado;
 		this.devuelto = devuelto;
@@ -58,18 +58,18 @@ public class Prestamo {
 	}
 
 	/**
-	 * @return the prestamo
+	 * @return the TipoPrestamo
 	 */
-	public TipoPrestamo getPrestamo() {
-		return prestamo;
+	public TipoPrestamo getTipoPrestamo() {
+		return tipoPrestamo;
 	}
 
 	/**
 	 * @param prestamo
-	 *            the prestamo to set
+	 *            the tipoPrestamo to set
 	 */
-	public void setPrestamo(TipoPrestamo prestamo) {
-		this.prestamo = prestamo;
+	public void setTipoPrestamo(TipoPrestamo tipoPrestamo) {
+		this.tipoPrestamo = tipoPrestamo;
 	}
 
 	/**
@@ -177,7 +177,7 @@ public class Prestamo {
 		result = prime * result + ((material == null) ? 0 : material.hashCode());
 		result = prime * result + ((prestado == null) ? 0 : prestado.hashCode());
 		result = prime * result + ((prestadoA == null) ? 0 : prestadoA.hashCode());
-		result = prime * result + ((prestamo == null) ? 0 : prestamo.hashCode());
+		result = prime * result + ((tipoPrestamo == null) ? 0 : tipoPrestamo.hashCode());
 		result = prime * result + ((razon == null) ? 0 : razon.hashCode());
 		return result;
 	}
@@ -223,10 +223,10 @@ public class Prestamo {
 				return false;
 		} else if (!prestadoA.equals(other.prestadoA))
 			return false;
-		if (prestamo == null) {
-			if (other.prestamo != null)
+		if (tipoPrestamo == null) {
+			if (other.tipoPrestamo != null)
 				return false;
-		} else if (!prestamo.equals(other.prestamo))
+		} else if (!tipoPrestamo.equals(other.tipoPrestamo))
 			return false;
 		if (razon == null) {
 			if (other.razon != null)

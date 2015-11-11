@@ -6,30 +6,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.next.cristaleria.model.Marca;
+import com.next.cristaleria.model.TipoPrestamo;
 
-public class Marcas {
-	public Marca insert(Marca marca) {
-		String query = "insert into marca(nombreMarca) values(?)";
+public class TiposPrestamos {
+	public TipoPrestamo insert(TipoPrestamo tipoPrestamo) {
+		String query = "insert into TipoPrestamo(nombreTipo) values(?)";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
-			ps.setString(1, marca.getNombre());
+			ps.setString(1, tipoPrestamo.getNombre());
 		
 			ps.execute();
 
 			ResultSet rs = ps.getGeneratedKeys();
-			Marca marcaN;
-			marcaN = marca;
+			TipoPrestamo tipoPrestamoN;
+			tipoPrestamoN = tipoPrestamo;
 			
 			if (rs.next()) {
-				marcaN.setId(rs.getLong(1));
+				tipoPrestamoN.setId(rs.getLong(1));
 			}
 
 			rs.close();
 			ps.close();
 			Connection.getCon().close();
-			return marcaN;
+			return tipoPrestamoN;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,12 +37,12 @@ public class Marcas {
 
 	}
 
-	public boolean delete(Marca marca) {
-		String query = "delete from marca where idMarca = ? ";
+	public boolean delete(TipoPrestamo tipoPrestamo) {
+		String query = "delete from tipoPrestamo where idTipoPrestamo = ? ";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
-			ps.setLong(1, marca.getId());
+			ps.setLong(1, tipoPrestamo.getId());
 
 			ps.execute();
 			ps.close();
@@ -55,16 +55,14 @@ public class Marcas {
 
 	}
 
-	public boolean update(Marca marca) {
-		String query = "update marca set nombreMarca = ? where idMarca= ?";
+	public boolean update(TipoPrestamo tipoPrestamo) {
+		String query = "update TipoPrestamo set nombreTipo = ? where idTipoPrestamo= ?";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
-			ps.setString(1, marca.getNombre());
-			ps.setLong(2, marca.getId());
+			ps.setString(1, tipoPrestamo.getNombre());
+			ps.setLong(2, tipoPrestamo.getId());
 			
-			
-
 			ps.execute();
 			ps.close();
 			Connection.getCon().close();
@@ -77,7 +75,7 @@ public class Marcas {
 
 	}
 
-	public ArrayList<Marca> select(String where) {
+	public ArrayList<TipoPrestamo> select(String where) {
 		try {
 			String query = "SELECT * FROM marca WHERE" + where != null ? "1" : where;
 			Statement st;
@@ -85,16 +83,16 @@ public class Marcas {
 			st = Connection.getCon().createStatement();
 
 			ResultSet rs = st.executeQuery(query);
-			ArrayList<Marca> res = new ArrayList<>();
+			ArrayList<TipoPrestamo> res = new ArrayList<>();
 
 			while (rs.next()) {
-				Marca marca = new Marca();
+				TipoPrestamo tipoPrestamo = new TipoPrestamo();
 
-				marca.setId(rs.getLong("idMarca"));
-				marca.setNombre(rs.getString("nombreMarca"));
+				tipoPrestamo.setId(rs.getLong("idTipoPrestamo"));
+				tipoPrestamo.setNombre(rs.getString("nombreTipo"));
 				
 
-				res.add(marca);
+				res.add(tipoPrestamo);
 			}
 			rs.close();
 			st.close();

@@ -6,30 +6,32 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.next.cristaleria.model.Marca;
+import com.next.cristaleria.model.Proveedor;;
 
-public class Marcas {
-	public Marca insert(Marca marca) {
-		String query = "insert into marca(nombreMarca) values(?)";
+
+
+public class Proveedores {
+	public Proveedor insert(Proveedor proveedor) {
+		String query = "insert into Proveedor(nombreProveedor) values(?)";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
-			ps.setString(1, marca.getNombre());
+			ps.setString(1, proveedor.getNombre());
 		
 			ps.execute();
 
 			ResultSet rs = ps.getGeneratedKeys();
-			Marca marcaN;
-			marcaN = marca;
+			Proveedor proveedorN;
+			proveedorN = proveedor;
 			
 			if (rs.next()) {
-				marcaN.setId(rs.getLong(1));
+				proveedorN.setId(rs.getLong(1));
 			}
 
 			rs.close();
 			ps.close();
 			Connection.getCon().close();
-			return marcaN;
+			return proveedorN;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,12 +39,12 @@ public class Marcas {
 
 	}
 
-	public boolean delete(Marca marca) {
-		String query = "delete from marca where idMarca = ? ";
+	public boolean delete(Proveedor proveedor) {
+		String query = "delete from proveedor where idProveedor = ? ";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
-			ps.setLong(1, marca.getId());
+			ps.setLong(1, proveedor.getId());
 
 			ps.execute();
 			ps.close();
@@ -55,16 +57,15 @@ public class Marcas {
 
 	}
 
-	public boolean update(Marca marca) {
-		String query = "update marca set nombreMarca = ? where idMarca= ?";
+	public boolean update(Proveedor proveedor) {
+		String query = "update proveedor set nombreProveedor = ? where idProveedor= ?";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
-			ps.setString(1, marca.getNombre());
-			ps.setLong(2, marca.getId());
+			ps.setString(1, proveedor.getNombre());
+			ps.setLong(2, proveedor.getId());
 			
 			
-
 			ps.execute();
 			ps.close();
 			Connection.getCon().close();
@@ -77,24 +78,24 @@ public class Marcas {
 
 	}
 
-	public ArrayList<Marca> select(String where) {
+	public ArrayList<Proveedor> select(String where) {
 		try {
-			String query = "SELECT * FROM marca WHERE" + where != null ? "1" : where;
+			String query = "SELECT * FROM Proveedor WHERE" + where != null ? "1" : where;
 			Statement st;
 
 			st = Connection.getCon().createStatement();
 
 			ResultSet rs = st.executeQuery(query);
-			ArrayList<Marca> res = new ArrayList<>();
+			ArrayList<Proveedor> res = new ArrayList<>();
 
 			while (rs.next()) {
-				Marca marca = new Marca();
+				Proveedor proveedor = new Proveedor();
 
-				marca.setId(rs.getLong("idMarca"));
-				marca.setNombre(rs.getString("nombreMarca"));
+				proveedor.setId(rs.getLong("idProveedor"));
+				proveedor.setNombre(rs.getString("nombreProveedor"));
 				
 
-				res.add(marca);
+				res.add(proveedor);
 			}
 			rs.close();
 			st.close();
