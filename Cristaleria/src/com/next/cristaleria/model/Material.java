@@ -3,7 +3,12 @@ package com.next.cristaleria.model;
 import java.util.Date;
 
 public class Material {
+	public static final int NUEVO = 1;
+	public static final int PRESTADO = 2;
+	public static final int DESECHADO = 3;
+	
 	private long id;
+	private int estado;
 	private String nombre;
 	private Marca marca;
 	private Ciclo ciclo;
@@ -216,9 +221,21 @@ public class Material {
 		this.ubicacion = ubicacion;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
+	 * @return the estado
+	 */
+	public int getEstado() {
+		return estado;
+	}
+
+	/**
+	 * @param estado the estado to set
+	 */
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -230,6 +247,7 @@ public class Material {
 		result = prime * result + ((detalleEntrada == null) ? 0 : detalleEntrada.hashCode());
 		result = prime * result + ((detalleSalida == null) ? 0 : detalleSalida.hashCode());
 		result = prime * result + ((entrada == null) ? 0 : entrada.hashCode());
+		result = prime * result + estado;
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((marca == null) ? 0 : marca.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
@@ -239,9 +257,7 @@ public class Material {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -278,6 +294,8 @@ public class Material {
 				return false;
 		} else if (!entrada.equals(other.entrada))
 			return false;
+		if (estado != other.estado)
+			return false;
 		if (id != other.id)
 			return false;
 		if (marca == null) {
@@ -307,5 +325,7 @@ public class Material {
 			return false;
 		return true;
 	}
+
+	
 
 }
