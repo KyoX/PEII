@@ -6,30 +6,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.next.cristaleria.model.Ciclo;
+import com.next.cristaleria.model.Marca;
 
-public class Ciclos {
-	public Ciclo insert(Ciclo ciclo) {
-		String query = "insert into ciclo(anhioCiclo,periodo) values(?,?)";
+public class Marcas {
+	public Marca insert(Marca marca) {
+		String query = "insert into marca(nombreMarca) values(?)";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
-			ps.setInt(1, ciclo.getAnho());
-			ps.setInt(2, ciclo.getPerido());
-
+			ps.setString(1, marca.getNombre());
+		
 			ps.execute();
 
 			ResultSet rs = ps.getGeneratedKeys();
-			Ciclo cicloN;
-			cicloN = ciclo;
+			Marca marcaN;
+			marcaN = marca;
+			
 			if (rs.next()) {
-				cicloN.setId(rs.getLong(1));
+				marcaN.setId(rs.getLong(1));
 			}
 
 			rs.close();
 			ps.close();
 			Connection.getCon().close();
-			return cicloN;
+			return marcaN;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,12 +37,12 @@ public class Ciclos {
 
 	}
 
-	public boolean delete(Ciclo ciclo) {
-		String query = "delete from ciclo where idCiclo = ? ";
+	public boolean delete(Marca marca) {
+		String query = "delete from marca where idMarca = ? ";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
-			ps.setLong(1, ciclo.getId());
+			ps.setLong(1, marca.getId());
 
 			ps.execute();
 			ps.close();
@@ -55,45 +55,46 @@ public class Ciclos {
 
 	}
 
-	public boolean update(Ciclo ciclo) {
-		String query = "update ciclo set anhioCiclo = ? set periodo = ? where idCiclo= ?";
+	public boolean update(Marca marca) {
+		String query = "update ciclo set nombreMarca = ? where idMarca= ?";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
-			ps.setInt(1, ciclo.getAnho());
-			ps.setInt(2, ciclo.getPerido());
-			ps.setLong(3, ciclo.getId());
+			ps.setString(1, marca.getNombre());
+			ps.setLong(2, marca.getId());
+			
+			
 
 			ps.execute();
 			ps.close();
 			Connection.getCon().close();
 			return true;
+	
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
 		return false;
 
 	}
 
-	public ArrayList<Ciclo> select(String where) {
+	public ArrayList<Marca> select(String where) {
 		try {
-			String query = "SELECT * FROM ciclo WHERE" + where != null ? "1" : where;
+			String query = "SELECT * FROM marca WHERE" + where != null ? "1" : where;
 			Statement st;
 
 			st = Connection.getCon().createStatement();
 
 			ResultSet rs = st.executeQuery(query);
-			ArrayList<Ciclo> res = new ArrayList<>();
+			ArrayList<Marca> res = new ArrayList<>();
 
 			while (rs.next()) {
-				Ciclo ciclo = new Ciclo();
+				Marca marca = new Marca();
 
-				ciclo.setId(rs.getLong("idCiclo"));
-				ciclo.setAnho(rs.getInt("anhioCiclo"));
-				ciclo.setPerido(rs.getInt("periodo"));
+				marca.setId(rs.getLong("idMarca"));
+				marca.setNombre(rs.getString("nombreMarca"));
+				
 
-				res.add(ciclo);
+				res.add(marca);
 			}
 			rs.close();
 			st.close();

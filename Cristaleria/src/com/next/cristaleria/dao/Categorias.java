@@ -1,6 +1,5 @@
 package com.next.cristaleria.dao;
 
-import java.awt.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +23,7 @@ public class Categorias {
 			Categoria catN;
 			catN = cat;
 			if (rs.next()) {
-				catN.setId(rs.getInt(1));
+				catN.setId(rs.getLong(1));
 			}
 
 			rs.close();
@@ -32,7 +31,7 @@ public class Categorias {
 			Connection.getCon().close();
 			return catN;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return null;
@@ -51,7 +50,7 @@ public class Categorias {
 			Connection.getCon().close();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return false;
@@ -71,7 +70,7 @@ public class Categorias {
 			Connection.getCon().close();
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return false;
@@ -80,20 +79,20 @@ public class Categorias {
 
 	public ArrayList<Categoria> select(String where) {
 		try {
-			String query = "SELECT * FROM Categoria" + where;
+			String query = "SELECT * FROM Categoria WHERE " + where!= null?"1":where;
 			Statement st;
 
 			st = Connection.getCon().createStatement();
 
 			ResultSet rs = st.executeQuery(query);
-			ArrayList<Categoria> res =  new ArrayList<>();
-			
+			ArrayList<Categoria> res = new ArrayList<>();
+
 			while (rs.next()) {
 				Categoria cat = new Categoria();
-				
+
 				cat.setId(rs.getLong("idCategoria"));
 				cat.setNombre(rs.getString("nombreCategoria"));
-				
+
 				res.add(cat);
 			}
 			rs.close();
@@ -101,10 +100,10 @@ public class Categorias {
 			Connection.getCon().close();
 			return res;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
