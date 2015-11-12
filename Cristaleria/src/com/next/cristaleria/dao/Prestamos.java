@@ -101,7 +101,7 @@ public class Prestamos {
 
 	public ArrayList<Prestamo> select(String where) {
 		try {
-			String query = "SELECT * FROM prestamo WHERE" + where != null ? "1" : where;
+			String query = "SELECT * FROM prestamo" + (where == null ? " " : "WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();

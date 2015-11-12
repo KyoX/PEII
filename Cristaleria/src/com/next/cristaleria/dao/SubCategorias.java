@@ -83,7 +83,7 @@ public class SubCategorias {
 
 	public ArrayList<SubCategoria> select(String where) {
 		try {
-			String query = "SELECT * FROM SubCategoria WHERE " + where!= null?"1":where;
+			String query = "SELECT * FROM SubCategoria" + (where == null ? " " : "WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();

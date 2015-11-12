@@ -79,7 +79,7 @@ public class Marcas {
 
 	public ArrayList<Marca> select(String where) {
 		try {
-			String query = "SELECT * FROM marca WHERE" + where != null ? "1" : where;
+			String query = "SELECT * FROM marca " + (where == null ? " " : "WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();

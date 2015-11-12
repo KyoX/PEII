@@ -79,7 +79,7 @@ public class Categorias {
 
 	public ArrayList<Categoria> select(String where) {
 		try {
-			String query = "SELECT * FROM Categoria WHERE " + where!= null?"1":where;
+			String query = "SELECT * FROM Categoria " + (where == null ? " " : "WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();

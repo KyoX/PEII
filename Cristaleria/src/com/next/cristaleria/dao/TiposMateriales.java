@@ -83,7 +83,7 @@ public class TiposMateriales {
 
 	public ArrayList<TipoMaterial> select(String where) {
 		try {
-			String query = "SELECT * FROM TipoMaterial WHERE" + where != null ? "1" : where;
+			String query = "SELECT * FROM TipoMaterial" +(where == null ? " " : "WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();

@@ -4,9 +4,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connection {
-	private static java.sql.Connection con;
-	private static String server, dataBase, usuario, password;
-	private static int puerto;
+	private static  java.sql.Connection con;
+	private static String server = "localhost", dataBase = "material_peii", usuario = "root", password = "";
+	private static int puerto = 3306;
 
 	/**
 	 * @return the con

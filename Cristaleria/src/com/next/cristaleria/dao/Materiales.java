@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Dictionary;
 
-import com.next.cristaleria.model.Marca;
 import com.next.cristaleria.model.Material;
 
 public class Materiales {
@@ -123,7 +123,7 @@ public class Materiales {
 	 */
 	public ArrayList<Material> select(String where) {
 		try {
-			String query = "SELECT * FROM Material WHERE" + where != null ? "1" : where;
+			String query = "SELECT * FROM Material " + (where == null ? " " : "WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();
@@ -160,5 +160,7 @@ public class Materiales {
 
 		return null;
 	}
+	
+
 
 }

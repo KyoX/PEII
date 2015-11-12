@@ -80,7 +80,7 @@ public class Proveedores {
 
 	public ArrayList<Proveedor> select(String where) {
 		try {
-			String query = "SELECT * FROM Proveedor WHERE" + where != null ? "1" : where;
+			String query = "SELECT * FROM Proveedor" + (where == null ? " " : "WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();

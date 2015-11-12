@@ -78,7 +78,7 @@ public class Ciclos {
 
 	public ArrayList<Ciclo> select(String where) {
 		try {
-			String query = "SELECT * FROM ciclo WHERE" + where != null ? "1" : where;
+			String query = "SELECT * FROM ciclo" + (where == null ? " " : "WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();
