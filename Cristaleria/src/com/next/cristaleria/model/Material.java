@@ -3,9 +3,14 @@ package com.next.cristaleria.model;
 import java.util.Date;
 
 public class Material {
-	public static final int NUEVO = 1;
-	public static final int PRESTADO = 2;
-	public static final int DESECHADO = 3;
+	public static final int ESTADO_NUEVO = 1;
+	public static final int ESTADO_PRESTADO = 2;
+	public static final int ESTADO_DESECHADO = 3;
+	public static final int ENTRADA_DONACION = 1;
+	public static final int ENTRADA_COMPRAS = 2;
+	
+	
+	
 	
 	private long id;
 	private int estado;
@@ -19,7 +24,7 @@ public class Material {
 	private String detalleEntrada;
 	private String detalleSalida;
 	private String ubicacion;
-
+	private int tipoEntrada;
 	/**
 	 * 
 	 */
@@ -235,6 +240,20 @@ public class Material {
 		this.estado = estado;
 	}
 
+	/**
+	 * @return the tipoEntrada
+	 */
+	public int getTipoEntrada() {
+		return tipoEntrada;
+	}
+
+	/**
+	 * @param tipoEntrada the tipoEntrada to set
+	 */
+	public void setTipoEntrada(int tipoEntrada) {
+		this.tipoEntrada = tipoEntrada;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -252,6 +271,7 @@ public class Material {
 		result = prime * result + ((marca == null) ? 0 : marca.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + ((proveedor == null) ? 0 : proveedor.hashCode());
+		result = prime * result + tipoEntrada;
 		result = prime * result + ((tipoMaterial == null) ? 0 : tipoMaterial.hashCode());
 		result = prime * result + ((ubicacion == null) ? 0 : ubicacion.hashCode());
 		return result;
@@ -313,6 +333,8 @@ public class Material {
 				return false;
 		} else if (!proveedor.equals(other.proveedor))
 			return false;
+		if (tipoEntrada != other.tipoEntrada)
+			return false;
 		if (tipoMaterial == null) {
 			if (other.tipoMaterial != null)
 				return false;
@@ -325,6 +347,9 @@ public class Material {
 			return false;
 		return true;
 	}
+
+	
+	
 
 	
 

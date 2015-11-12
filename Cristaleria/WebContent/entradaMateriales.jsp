@@ -1,4 +1,6 @@
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -74,7 +76,7 @@ and open the template in the editor.
 		<div id="logo">
 			<img src="img/UCA2015.png" alt="UCA logo" height="125px"
 				width="100px">
-			<h1>Universidad centroamericana José Simeón Cañas</h1>
+			<h1>Universidad centroamericana Jose Simeon Ca�as</h1>
 			<h2>Departamento de Ingenieria de Procesos y Ciencias
 				Ambientales</h2>
 			<h5>LABORATORIO DE TECNOLOGIA DE PROCESOS</h5>
@@ -87,14 +89,9 @@ and open the template in the editor.
 			<form class="form-horizontal">
 
 				<div class="form-group">
-					<label for="codigoMaterial" class="col-sm-2 control-label">Codigo:</label>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" id="codigoMaterial"
-							placeholder="Codigo">
-					</div>
-					<label for="nombreMaterial" class="col-sm-4 control-label">Nombre
+					<label for="nombreMaterial" class="col-sm-3 control-label">Nombre
 						material:</label>
-					<div class="col-sm-4">
+					<div class="col-sm-9">
 						<input type="text" class="form-control" id="nombreMaterial"
 							placeholder="Material">
 					</div>
@@ -102,18 +99,20 @@ and open the template in the editor.
 				<div class="form-group">
 					<label for="marcaProducto" class="col-sm-2 control-label">Marca:</label>
 					<div class="col-sm-4">
-						<select class="form-control" id="nombreMaterial">
-							<option>marca 1</option>
-							<option>marca 2</option>
-							<option>marca 3</option>
+						<select class="form-control" id="marcaMaterial">
+							<s:iterator value="marcas">
+								<option value='<s:property value="id"/>'><s:property
+										value="nombre" /></option>
+							</s:iterator>
 						</select>
 					</div>
 					<label for="proveedorProducto" class="col-sm-2 control-label">Proveedor:</label>
 					<div class="col-sm-4">
 						<select class="form-control" id="nombreMaterial">
-							<option>proveedor 1</option>
-							<option>proveedor 2</option>
-							<option>proveedor 3</option>
+							<s:iterator value="proveedores">
+								<option value='<s:property value = "id"/>'><s:property
+										value="nombre" /></option>
+							</s:iterator>
 						</select>
 					</div>
 
@@ -121,18 +120,29 @@ and open the template in the editor.
 				<div class="form-group">
 					<label for="status" class="col-sm-2 control-label">Status:</label>
 					<div class="col-sm-2">
-						<select class="form-control" id="status">
-							<option>Prestado</option>
-							<option>Disponible</option>
-							<option>Dañado</option>
+						<select class="form-control" id="estado">
+							<s:iterator value="estados">
+								<option value='<s:property value = "key"/>'><s:property
+										value="value" /></option>
+							</s:iterator>
 						</select>
 					</div>
-					<label for="tipoProducto" class="col-sm-4 control-label">Tipo
-						producto:</label>
+					<label for="categoria" class="col-sm-2 control-label">Categoria:</label>
 					<div class="col-sm-2">
-						<select class="form-control" id="tipoProducto">
-							<option>Cristaleria</option>
-							<option>Otros</option>
+						<select class="form-control" id="categoria">
+							<s:iterator value="categorias">
+								<option value='<s:property value = "id"/>'><s:property
+										value="nombre" /></option>
+							</s:iterator>
+						</select>
+					</div>
+					<label for="subCategoria" class="col-sm-2 control-label">Sub categoria:</label>
+					<div class="col-sm-2">
+						<select class="form-control" id="subCategoria">
+							<s:iterator value="tiposMateriales">
+								<option value='<s:property value = "id"/>'><s:property
+										value="nombre" /></option>
+							</s:iterator>
 						</select>
 					</div>
 
@@ -141,10 +151,11 @@ and open the template in the editor.
 					<label for="tipoEntrada" class="col-sm-2 control-label">Tipo
 						entrada:</label>
 					<div class="col-sm-2">
-						<select class="form-control" id="tipoProducto">
-							<option>Reposicion</option>
-							<option>Devolucion por prestamos</option>
-							<option>Donacion</option>
+						<select class="form-control" id="tipoEntrada">
+							<s:iterator value="tipoEntradas">
+								<option value='<s:property value = "key"/>'><s:property
+										value="value" /></option>
+							</s:iterator>
 						</select>
 					</div>
 					<label for="detalleTipoEntrada" class="col-sm-4 control-label">Detalle

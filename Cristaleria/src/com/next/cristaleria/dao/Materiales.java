@@ -23,8 +23,8 @@ public class Materiales {
 	 */
 	public Material insert(Material material) {
 		String query = "insert into material"
-				+ "(nombreMaterial,idMarca,idCiclo,idProveedor,idTipoMaterial,fechaEntrada,fechaDesecho,estado,detalleEntrada,detalleSalida,ubicacion) "
-				+ "values(?,?,?,?,?,?,?,?,?,?,?)";
+				+ "(nombreMaterial,idMarca,idCiclo,idProveedor,idTipoMaterial,fechaEntrada,fechaDesecho,estado,detalleEntrada,detalleSalida,ubicacion,tipoEntrada) "
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
@@ -39,7 +39,7 @@ public class Materiales {
 			ps.setString(9, material.getDetalleEntrada());
 			ps.setString(10, material.getDetalleSalida());
 			ps.setString(11, material.getUbicacion());
-			
+			ps.setInt(12, material.getTipoEntrada());
 			ps.execute();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -87,7 +87,7 @@ public class Materiales {
 	 * @return true si se actualiza 
 	 */
 	public boolean update(Material material) {
-		String query = "update material set nombreMaterial = ? ,idMarca = ?,idCiclo = ?,idProveedor = ?,idTipoMaterial = ?,fechaEntrada = ?,fechaDesecho = ?,estado = ?,detalleEntrada = ?,detalleSalida = ?,ubicacion = ? where idMaterial= ?";
+		String query = "update material set nombreMaterial = ? ,idMarca = ?,idCiclo = ?,idProveedor = ?,idTipoMaterial = ?,fechaEntrada = ?,fechaDesecho = ?,estado = ?,detalleEntrada = ?,detalleSalida = ?,ubicacion = ?, tipoEntrada = ? where idMaterial= ?";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
@@ -102,7 +102,8 @@ public class Materiales {
 			ps.setString(9, material.getDetalleEntrada());
 			ps.setString(10, material.getDetalleSalida());
 			ps.setString(11, material.getUbicacion());
-			ps.setLong(12, material.getId());
+			ps.setInt(12, material.getTipoEntrada());
+			ps.setLong(13, material.getId());
 
 			ps.execute();
 			ps.close();
@@ -146,7 +147,7 @@ public class Materiales {
 				material.setDetalleEntrada(rs.getString("detalleEntrada"));
 				material.setDetalleSalida(rs.getString("detalleSalida"));
 				material.setUbicacion(rs.getString("ubicacion"));
-
+				material.setTipoEntrada(rs.getInt("tipoEntrada"));
 				res.add(material);
 			}
 			rs.close();
