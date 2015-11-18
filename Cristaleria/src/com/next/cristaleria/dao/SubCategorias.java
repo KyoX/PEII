@@ -28,9 +28,6 @@ public class SubCategorias {
 				sCatN.setId(rs.getLong(1));
 			}
 
-			rs.close();
-			ps.close();
-			Connection.getCon().close();
 			return sCatN;
 		} catch (SQLException e) {
 			
@@ -47,9 +44,7 @@ public class SubCategorias {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, sCat.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+
 			return true;
 		} catch (SQLException e) {
 			
@@ -69,9 +64,6 @@ public class SubCategorias {
 			ps.setLong(2, sCat.getPrincipal().getId());
 			ps.setLong(3, sCat.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
 			return true;
 		} catch (SQLException e) {
 			
@@ -83,9 +75,11 @@ public class SubCategorias {
 
 	public ArrayList<SubCategoria> select(String where) {
 		try {
-			String query = "SELECT * FROM SubCategoria" + (where == null ? " " : "WHERE " + where);
+			String query = "SELECT * FROM SubCategoria" + (where == null ? " " : " WHERE " + where);
 			Statement st;
-
+			
+			System.out.println(query);
+			
 			st = Connection.getCon().createStatement();
 
 			ResultSet rs = st.executeQuery(query);
@@ -100,9 +94,9 @@ public class SubCategorias {
 
 				res.add(sCat);
 			}
-			rs.close();
-			st.close();
-			Connection.getCon().close();
+			
+			
+			
 			return res;
 		} catch (SQLException e) {
 		

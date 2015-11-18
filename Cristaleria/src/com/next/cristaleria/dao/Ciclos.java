@@ -26,9 +26,7 @@ public class Ciclos {
 				cicloN.setId(rs.getLong(1));
 			}
 
-			rs.close();
-			ps.close();
-			Connection.getCon().close();
+			
 			return cicloN;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -44,9 +42,6 @@ public class Ciclos {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, ciclo.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -64,9 +59,7 @@ public class Ciclos {
 			ps.setInt(2, ciclo.getPerido());
 			ps.setLong(3, ciclo.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 		} catch (SQLException e) {
 
@@ -78,7 +71,7 @@ public class Ciclos {
 
 	public ArrayList<Ciclo> select(String where) {
 		try {
-			String query = "SELECT * FROM ciclo" + (where == null ? " " : "WHERE " + where);
+			String query = "SELECT * FROM ciclo" + (where == null ? " " : " WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();
@@ -95,9 +88,6 @@ public class Ciclos {
 
 				res.add(ciclo);
 			}
-			rs.close();
-			st.close();
-			Connection.getCon().close();
 			return res;
 		} catch (SQLException e) {
 

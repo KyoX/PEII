@@ -29,9 +29,6 @@ public class TiposMateriales {
 				tipoMaterialN.setId(rs.getLong(1));
 			}
 
-			rs.close();
-			ps.close();
-			Connection.getCon().close();
 			return tipoMaterialN;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,10 +43,6 @@ public class TiposMateriales {
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, tipoMaterial.getId());
-
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,9 +62,7 @@ public class TiposMateriales {
 			
 			
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+
 			return true;
 	
 		} catch (SQLException e) {
@@ -83,7 +74,7 @@ public class TiposMateriales {
 
 	public ArrayList<TipoMaterial> select(String where) {
 		try {
-			String query = "SELECT * FROM TipoMaterial" +(where == null ? " " : "WHERE " + where);
+			String query = "SELECT * FROM TipoMaterial" +(where == null ? " " : " WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();
@@ -99,9 +90,6 @@ public class TiposMateriales {
 				tipoMaterial.setSubCategoria((new SubCategorias()).select("idSubCategoria = " +  rs.getLong("idSubCategoria")).get(0));
 				res.add(tipoMaterial);
 			}
-			rs.close();
-			st.close();
-			Connection.getCon().close();
 			return res;
 		} catch (SQLException e) {
 

@@ -86,14 +86,14 @@ and open the template in the editor.
 	<div id="wrapper" class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8 well">
-			<form class="form-horizontal">
+			<form id="nuevoMaterial" class="form-horizontal" method="post">
 
 				<div class="form-group">
 					<label for="nombreMaterial" class="col-sm-3 control-label">Nombre
 						material:</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" id="nombreMaterial"
-							placeholder="Material">
+							placeholder="Material" required="required">
 					</div>
 				</div>
 				<div class="form-group">
@@ -108,7 +108,7 @@ and open the template in the editor.
 					</div>
 					<label for="proveedorProducto" class="col-sm-2 control-label">Proveedor:</label>
 					<div class="col-sm-4">
-						<select class="form-control" id="nombreMaterial">
+						<select class="form-control" id="proveedorProducto">
 							<s:iterator value="proveedores">
 								<option value='<s:property value = "id"/>'><s:property
 										value="nombre" /></option>
@@ -118,9 +118,9 @@ and open the template in the editor.
 
 				</div>
 				<div class="form-group">
-					<label for="status" class="col-sm-2 control-label">Status:</label>
+					<label for="status" class="col-sm-2 control-label">Estado:</label>
 					<div class="col-sm-2">
-						<select class="form-control" id="estado">
+						<select class="form-control" id="status">
 							<s:iterator value="estados">
 								<option value='<s:property value = "key"/>'><s:property
 										value="value" /></option>
@@ -140,7 +140,9 @@ and open the template in the editor.
 					<div class="col-sm-2">
 						<select class="form-control" id="subCategoria">
 							<s:iterator value="tiposMateriales">
-								<option value='<s:property value = "id"/>'><s:property
+								<option value='<s:property value = "id"/>'>
+								
+									<s:property
 										value="nombre" /></option>
 							</s:iterator>
 						</select>
@@ -162,7 +164,7 @@ and open the template in the editor.
 						entrada:</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="detalleTipoEntrada"
-							placeholder="Detalle entrada">
+							placeholder="Detalle entrada" required="required">
 					</div>
 
 				</div>
@@ -174,18 +176,12 @@ and open the template in the editor.
 					</div>
 					<label for="ciclo" class="col-sm-2 control-label">Ciclo:</label>
 					<div class="col-sm-4">
-						<div class="col-sm-6">
+						<div class="col-sm-12">
 							<select class="form-control" id="ciclo">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-							</select>
-						</div>
-						<div class="col-sm-6">
-							<select class="form-control" id="anho">
-								<option>2015</option>
-								<option>2016</option>
-								<option>2017</option>
+								<s:iterator value="ciclo">
+									<option value='<s:property value = "id"/>'><s:property
+											value="perido" /> / <s:property value="anho"/></option>
+								</s:iterator>
 							</select>
 						</div>
 					</div>
@@ -203,9 +199,8 @@ and open the template in the editor.
 		<div class="col-md-2"></div>
 	</div>
 
-	<script>
-		
-	</script>
+	<script type="text/javascript" src="js/subCategoria.js"></script>
+	<script type="text/javascript" src="js/nuevoMaterial.js"></script>
 </body>
 </html>
 

@@ -28,9 +28,7 @@ public class Proveedores {
 				proveedorN.setId(rs.getLong(1));
 			}
 
-			rs.close();
-			ps.close();
-			Connection.getCon().close();
+		
 			return proveedorN;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -46,9 +44,6 @@ public class Proveedores {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, proveedor.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,9 +61,7 @@ public class Proveedores {
 			ps.setLong(2, proveedor.getId());
 			
 			
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 	
 		} catch (SQLException e) {
@@ -80,7 +73,7 @@ public class Proveedores {
 
 	public ArrayList<Proveedor> select(String where) {
 		try {
-			String query = "SELECT * FROM Proveedor" + (where == null ? " " : "WHERE " + where);
+			String query = "SELECT * FROM Proveedor" + (where == null ? " " : " WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();
@@ -97,9 +90,6 @@ public class Proveedores {
 
 				res.add(proveedor);
 			}
-			rs.close();
-			st.close();
-			Connection.getCon().close();
 			return res;
 		} catch (SQLException e) {
 

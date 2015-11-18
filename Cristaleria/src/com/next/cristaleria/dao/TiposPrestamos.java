@@ -26,9 +26,7 @@ public class TiposPrestamos {
 				tipoPrestamoN.setId(rs.getLong(1));
 			}
 
-			rs.close();
-			ps.close();
-			Connection.getCon().close();
+			
 			return tipoPrestamoN;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -44,9 +42,7 @@ public class TiposPrestamos {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, tipoPrestamo.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -63,9 +59,7 @@ public class TiposPrestamos {
 			ps.setString(1, tipoPrestamo.getNombre());
 			ps.setLong(2, tipoPrestamo.getId());
 			
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 	
 		} catch (SQLException e) {
@@ -77,7 +71,7 @@ public class TiposPrestamos {
 
 	public ArrayList<TipoPrestamo> select(String where) {
 		try {
-			String query = "SELECT * FROM marca" + (where == null ? " " : "WHERE " + where);
+			String query = "SELECT * FROM marca" + (where == null ? " " : " WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();
@@ -94,9 +88,6 @@ public class TiposPrestamos {
 
 				res.add(tipoPrestamo);
 			}
-			rs.close();
-			st.close();
-			Connection.getCon().close();
 			return res;
 		} catch (SQLException e) {
 

@@ -44,9 +44,7 @@ public class Prestamos {
 				prestamoN.setId(rs.getLong(1));
 			}
 
-			rs.close();
-			ps.close();
-			Connection.getCon().close();
+			
 			return prestamoN;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,9 +60,7 @@ public class Prestamos {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, prestamo.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,9 +83,7 @@ public class Prestamos {
 			ps.setLong(7, prestamo.getCiclo().getId());
 			ps.setLong(8, prestamo.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 	
 		} catch (SQLException e) {
@@ -101,7 +95,7 @@ public class Prestamos {
 
 	public ArrayList<Prestamo> select(String where) {
 		try {
-			String query = "SELECT * FROM prestamo" + (where == null ? " " : "WHERE " + where);
+			String query = "SELECT * FROM prestamo" + (where == null ? " " : " WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();
@@ -124,9 +118,6 @@ public class Prestamos {
 
 				res.add(prestamo);
 			}
-			rs.close();
-			st.close();
-			if (!Connection.getCon().isClosed()) Connection.getCon().close();
 			return res;
 		} catch (SQLException e) {
 

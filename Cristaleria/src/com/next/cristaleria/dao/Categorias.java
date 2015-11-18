@@ -26,9 +26,7 @@ public class Categorias {
 				catN.setId(rs.getLong(1));
 			}
 
-			rs.close();
-			ps.close();
-			Connection.getCon().close();
+		
 			return catN;
 		} catch (SQLException e) {
 			
@@ -45,9 +43,6 @@ public class Categorias {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, cat.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
 			return true;
 		} catch (SQLException e) {
 			
@@ -65,9 +60,7 @@ public class Categorias {
 			ps.setString(1, cat.getNombre());
 			ps.setLong(2, cat.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+
 			return true;
 		} catch (SQLException e) {
 			
@@ -94,10 +87,7 @@ public class Categorias {
 				cat.setNombre(rs.getString("nombreCategoria"));
 
 				res.add(cat);
-			}
-			rs.close();
-			st.close();
-			Connection.getCon().close();
+			}			
 			return res;
 		} catch (SQLException e) {
 		

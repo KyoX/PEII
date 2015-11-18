@@ -26,9 +26,6 @@ public class Marcas {
 				marcaN.setId(rs.getLong(1));
 			}
 
-			rs.close();
-			ps.close();
-			Connection.getCon().close();
 			return marcaN;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -44,9 +41,7 @@ public class Marcas {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, marca.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -65,9 +60,7 @@ public class Marcas {
 			
 			
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 	
 		} catch (SQLException e) {
@@ -79,7 +72,7 @@ public class Marcas {
 
 	public ArrayList<Marca> select(String where) {
 		try {
-			String query = "SELECT * FROM marca " + (where == null ? " " : "WHERE " + where);
+			String query = "SELECT * FROM marca " + (where == null ? " " : " WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();
@@ -96,9 +89,6 @@ public class Marcas {
 
 				res.add(marca);
 			}
-			rs.close();
-			st.close();
-			Connection.getCon().close();
 			return res;
 		} catch (SQLException e) {
 

@@ -9,9 +9,6 @@ public class Material {
 	public static final int ENTRADA_DONACION = 1;
 	public static final int ENTRADA_COMPRAS = 2;
 	
-	
-	
-	
 	private long id;
 	private int estado;
 	private String nombre;

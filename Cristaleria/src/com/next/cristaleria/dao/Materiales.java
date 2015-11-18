@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Dictionary;
 
+import org.apache.commons.lang.ObjectUtils.Null;
+
 import com.next.cristaleria.model.Material;
 
 public class Materiales {
@@ -33,8 +35,14 @@ public class Materiales {
 			ps.setLong(3, material.getCiclo().getId());
 			ps.setLong(4, material.getProveedor().getId());
 			ps.setLong(5, material.getTipoMaterial().getId());
-			ps.setDate(6, (Date) material.getEntrada());
-			ps.setDate(7, (Date) material.getDesecho());
+			if( material.getEntrada() != null)
+				ps.setDate(6, new java.sql.Date(material.getEntrada().getTime()) );
+			else
+				ps.setDate(6,null);
+			if( material.getDesecho() != null)
+				ps.setDate(7, new java.sql.Date(material.getDesecho().getTime())  );
+			else
+				ps.setDate(7,null);
 			ps.setInt(8, material.getEstado());
 			ps.setString(9, material.getDetalleEntrada());
 			ps.setString(10, material.getDetalleSalida());
@@ -50,9 +58,7 @@ public class Materiales {
 				materialN.setId(rs.getLong(1));
 			}
 
-			rs.close();
-			ps.close();
-			Connection.getCon().close();
+			
 			return materialN;
 			
 		} catch (SQLException e) {
@@ -69,9 +75,7 @@ public class Materiales {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, material.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,9 +109,7 @@ public class Materiales {
 			ps.setInt(12, material.getTipoEntrada());
 			ps.setLong(13, material.getId());
 
-			ps.execute();
-			ps.close();
-			Connection.getCon().close();
+			
 			return true;
 
 		} catch (SQLException e) {
@@ -124,7 +126,7 @@ public class Materiales {
 	 */
 	public ArrayList<Material> select(String where) {
 		try {
-			String query = "SELECT * FROM Material " + (where == null ? " " : "WHERE " + where);
+			String query = "SELECT * FROM Material " + (where == null ? " " : " WHERE " + where);
 			Statement st;
 
 			st = Connection.getCon().createStatement();
@@ -150,9 +152,6 @@ public class Materiales {
 				material.setTipoEntrada(rs.getInt("tipoEntrada"));
 				res.add(material);
 			}
-			rs.close();
-			st.close();
-			if (!Connection.getCon().isClosed()) Connection.getCon().close();
 			return res;
 		} catch (SQLException e) {
 
