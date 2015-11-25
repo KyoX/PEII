@@ -49,9 +49,9 @@ and open the template in the editor.
 			<a href="#" class="navbar-brand dropdown-toggle"
 				data-toggle="dropdown">Menu <b class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="entradaMateriales.html"> Nuevo Material</a></li>
+				<li><a href="entradaMateriales.jsp"> Nuevo Material</a></li>
 				<li><a href="prestamoMateriales.jsp"> Prestamo Material</a></li>
-				<li><a href="salidaMateriales.html"> Otras Salidas</a></li>
+				<li><a href="salidaMateriales.jsp"> Otras Salidas</a></li>
 			</ul>
 		</div>
 
@@ -202,7 +202,7 @@ and open the template in the editor.
 	</div>
 	
 	<div class="row">
-		<table class="table table-condensed scroll" style = ''>
+		<table class="table table-condensed" >
 			<tr>
 				<th> Material </th>
 				<th> Marca </th>
