@@ -6,10 +6,11 @@ public class Prestamo {
 	private long id;
 	private TipoPrestamo tipoPrestamo;
 	private String prestadoA;
+	private String documento;
 	private Date prestado;
 	private Date devuelto;
 	private String razon;
-	private Material material;
+	private long materia;
 	private Ciclo ciclo;
 
 	/**
@@ -23,14 +24,15 @@ public class Prestamo {
 	 * @param id
 	 * @param prestamo
 	 * @param prestadoA
+	 * @param documento
 	 * @param prestado
 	 * @param devuelto
 	 * @param razon
-	 * @param material
+	 * @param materia
 	 * @param ciclo
 	 */
-	public Prestamo(long id, TipoPrestamo prestamo, String prestadoA, Date prestado, Date devuelto, String razon,
-			Material material, Ciclo ciclo) {
+	public Prestamo(long id, TipoPrestamo prestamo, String prestadoA,String documento, Date prestado, Date devuelto, String razon,
+			long materia, Ciclo ciclo) {
 		super();
 		this.id = id;
 		this.tipoPrestamo = prestamo;
@@ -38,7 +40,7 @@ public class Prestamo {
 		this.prestado = prestado;
 		this.devuelto = devuelto;
 		this.razon = razon;
-		this.material = material;
+		this.materia = materia;
 		this.ciclo = ciclo;
 	}
 
@@ -135,16 +137,16 @@ public class Prestamo {
 	/**
 	 * @return the material
 	 */
-	public Material getMaterial() {
-		return material;
+	public long getMateria() {
+		return materia;
 	}
 
 	/**
 	 * @param material
 	 *            the material to set
 	 */
-	public void setMaterial(Material material) {
-		this.material = material;
+	public void setMateria(long materia) {
+		this.materia = materia;
 	}
 
 	/**
@@ -162,6 +164,14 @@ public class Prestamo {
 		this.ciclo = ciclo;
 	}
 
+	public String getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(String documento) {
+		this.documento = documento;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -174,11 +184,12 @@ public class Prestamo {
 		result = prime * result + ((ciclo == null) ? 0 : ciclo.hashCode());
 		result = prime * result + ((devuelto == null) ? 0 : devuelto.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((material == null) ? 0 : material.hashCode());
+		result = prime * result +  (int) (materia ^ (id >>> 32));
 		result = prime * result + ((prestado == null) ? 0 : prestado.hashCode());
 		result = prime * result + ((prestadoA == null) ? 0 : prestadoA.hashCode());
 		result = prime * result + ((tipoPrestamo == null) ? 0 : tipoPrestamo.hashCode());
 		result = prime * result + ((razon == null) ? 0 : razon.hashCode());
+		result = prime * result + ((documento == null) ? 0 : documento.hashCode());
 		return result;
 	}
 
@@ -208,10 +219,7 @@ public class Prestamo {
 			return false;
 		if (id != other.id)
 			return false;
-		if (material == null) {
-			if (other.material != null)
-				return false;
-		} else if (!material.equals(other.material))
+		if (materia != other.materia)
 			return false;
 		if (prestado == null) {
 			if (other.prestado != null)
@@ -232,6 +240,11 @@ public class Prestamo {
 			if (other.razon != null)
 				return false;
 		} else if (!razon.equals(other.razon))
+			return false;
+		if (documento == null) {
+			if (other.documento != null)
+				return false;
+		} else if (!documento.equals(other.documento))
 			return false;
 		return true;
 	}

@@ -50,7 +50,7 @@ and open the template in the editor.
 				data-toggle="dropdown">Menu <b class="caret"></b></a>
 			<ul class="dropdown-menu">
 				<li><a href="entradaMateriales.html"> Nuevo Material</a></li>
-				<li><a href="prestamo.html"> Prestamo Material</a></li>
+				<li><a href="prestamoMateriales.jsp"> Prestamo Material</a></li>
 				<li><a href="salidaMateriales.html"> Otras Salidas</a></li>
 			</ul>
 		</div>

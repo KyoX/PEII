@@ -19,6 +19,7 @@
 	</filter-mapping>
 	<welcome-file-list>
 		<welcome-file>nuevoMaterial.action</welcome-file>
+		<welcome-file>nuevoPrestamo.action</welcome-file>
 	</welcome-file-list>
 
 </web-app>

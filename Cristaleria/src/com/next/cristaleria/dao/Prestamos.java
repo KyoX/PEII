@@ -20,18 +20,19 @@ public class Prestamos {
 	 * @return El objeto insertado con el id que se le asigno
 	 */
 	public Prestamo insert(Prestamo prestamo) {
-		String query = "insert into prestamo(idTipoPrestamo,prestadoA,fechaPrestamo,fechaDevuelto,razonPrestamo,idMaterial,idCiclo)"
-				+ " values(?,?,?,?,?,?,?)";
+		String query = "insert into prestamo(idTipoPrestamo,prestadoA,documento,fechaPrestamo,fechaDevuelto,razonPrestamo,idCiclo,materia)"
+				+ " values(?,?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
 			ps.setLong(1, prestamo.getTipoPrestamo().getId());
 			ps.setString(2, prestamo.getPrestadoA());
-			ps.setDate(3, (Date) prestamo.getPrestado());
-			ps.setDate(4, (Date) prestamo.getDevuelto());
-			ps.setString(5, prestamo.getRazon());
-			ps.setLong(6, prestamo.getMaterial().getId());
+			ps.setString(3, prestamo.getDocumento());
+			ps.setDate(4, (Date) prestamo.getPrestado());
+			ps.setDate(5, (Date) prestamo.getDevuelto());
+			ps.setString(6, prestamo.getRazon());
 			ps.setLong(7, prestamo.getCiclo().getId());
+			ps.setLong(8, prestamo.getMateria());
 			
 		
 			ps.execute();
@@ -70,7 +71,7 @@ public class Prestamos {
 	}
 
 	public boolean update(Prestamo prestamo) {
-		String query = "update prestamo set idTipoPrestamo = ?,prestadoA = ?,fechaPrestamo = ?,fechaDevuelto = ?,razonPrestamo = ?,idMaterial = ?,idCiclo = ? where idPrestamo= ?";
+		String query = "update prestamo set idTipoPrestamo = ?,prestadoA = ?,fechaPrestamo = ?,fechaDevuelto = ?,razonPrestamo = ?,materia = ?,idCiclo = ?, documento=? where idPrestamo= ?";
 
 		try {
 			PreparedStatement ps = Connection.getCon().prepareStatement(query);
@@ -79,9 +80,10 @@ public class Prestamos {
 			ps.setDate(3, (Date) prestamo.getPrestado());
 			ps.setDate(4, (Date) prestamo.getDevuelto());
 			ps.setString(5, prestamo.getRazon());
-			ps.setLong(6, prestamo.getMaterial().getId());
+			ps.setLong(6, prestamo.getMateria());
 			ps.setLong(7, prestamo.getCiclo().getId());
-			ps.setLong(8, prestamo.getId());
+			ps.setString(8, prestamo.getDocumento());
+			ps.setLong(9, prestamo.getId());
 
 			
 			return true;
@@ -112,8 +114,9 @@ public class Prestamos {
 				prestamo.setPrestado(rs.getDate("fechaPrestado"));
 				prestamo.setDevuelto(rs.getDate("fechaDevuelto"));
 				prestamo.setRazon(rs.getString("razonPrestamo"));
-				prestamo.setMaterial((new Materiales()).select("idMaterial = " + rs.getLong("idMaterial")).get(0));
+				prestamo.setMateria(rs.getLong("materia"));
 				prestamo.setCiclo((new Ciclos()).select("idCiclo = " + rs.getLong("idCiclo")).get(0));
+				prestamo.setDocumento(rs.getString("documento"));
 				
 
 				res.add(prestamo);
