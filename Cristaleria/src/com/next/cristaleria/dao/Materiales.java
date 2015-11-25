@@ -139,7 +139,7 @@ public class Materiales {
 				
 				material.setId(rs.getLong("idMaterial"));
 				material.setNombre(rs.getString("nombreMaterial"));
-				material.setMarca(new Marcas().select("idMarca = " + rs.getLong("idMaterial")).get(0));
+				material.setMarca(new Marcas().select("idMarca = " + rs.getLong("idMarca")).get(0));
 				material.setCiclo(new Ciclos().select("idCiclo = " + rs.getLong("idCiclo")).get(0));
 				material.setProveedor((new Proveedores()).select("idProveedor = " + rs.getLong("idProveedor")).get(0));
 				material.setTipoMaterial((new TiposMateriales()).select("idTipoMaterial = " + rs.getLong("idTipoMaterial")).get(0));
