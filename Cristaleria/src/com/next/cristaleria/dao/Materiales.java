@@ -141,7 +141,7 @@ public class Materiales {
 				material.setNombre(rs.getString("nombreMaterial"));
 				material.setMarca(new Marcas().select("idMarca = " + rs.getLong("idMaterial")).get(0));
 				material.setCiclo(new Ciclos().select("idCiclo = " + rs.getLong("idCiclo")).get(0));
-				material.setProveedor((new Proveedores()).select("idPorveedor = " + rs.getLong("idPorveedor")).get(0));
+				material.setProveedor((new Proveedores()).select("idProveedor = " + rs.getLong("idProveedor")).get(0));
 				material.setTipoMaterial((new TiposMateriales()).select("idTipoMaterial = " + rs.getLong("idTipoMaterial")).get(0));
 				material.setEntrada(rs.getDate("fechaEntrada"));
 				material.setDesecho(rs.getDate("fechaDesecho"));
