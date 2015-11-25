@@ -22,7 +22,8 @@ $(function(){
 			  data: data,
 			  success: function(r){
 				 if(r.guardado == true){
-					 alert("Se guardo Correctamente");
+					 
+					 window.location = "";
 				 }else{
 					 alert("No se pudo guardar");
 				 }

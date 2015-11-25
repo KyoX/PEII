@@ -12,6 +12,7 @@ import org.apache.struts2.convention.annotation.ResultPath;
 import com.next.cristaleria.dao.Categorias;
 import com.next.cristaleria.dao.Ciclos;
 import com.next.cristaleria.dao.Marcas;
+import com.next.cristaleria.dao.Materiales;
 import com.next.cristaleria.dao.Proveedores;
 import com.next.cristaleria.dao.TiposMateriales;
 import com.next.cristaleria.model.Categoria;
@@ -37,7 +38,8 @@ public class FormNuevoMaterial extends ActionSupport {
 	private ArrayList<Ciclo> ciclo;
 	private HashMap<Integer, String> estados;
 	private HashMap<Integer, String> tipoEntradas;
-
+	private ArrayList<Material> materiales;
+	
 	@Override
 	public String execute() throws Exception {
 
@@ -50,6 +52,8 @@ public class FormNuevoMaterial extends ActionSupport {
 		Field[] estado = Material.class.getFields();
 		estados = new HashMap<Integer,String>();
 		tipoEntradas = new HashMap<Integer,String>();
+		
+		materiales = (new Materiales()).select(null);
 		
 		for (Field f : estado) {
 			if( f.getName().contains("ESTADO"))
@@ -110,6 +114,13 @@ public class FormNuevoMaterial extends ActionSupport {
 	 */
 	public ArrayList<Ciclo> getCiclo() {
 		return ciclo;
+	}
+
+	/**
+	 * @return the materiales
+	 */
+	public ArrayList<Material> getMateriales() {
+		return materiales;
 	}
 	
 	

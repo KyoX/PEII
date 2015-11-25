@@ -8,7 +8,6 @@ $(function(){
 					  	if(res){
 					  		var sSubCategoria =  $("#subCategoria");
 					  		if (res.subCategoria.length == 0){
-					  			console.log("hola1");
 					  			sSubCategoria
 					  				.find('option')
 					  				.remove()

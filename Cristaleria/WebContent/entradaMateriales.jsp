@@ -32,7 +32,7 @@ and open the template in the editor.
 </head>
 <body>
 
-	<input type="text" name="user" id="user" value="<?php echo $user; ?>"
+	<input type="text" name="user" id="user" value="user"
 		style="display: none;" />
 	<!--[if lt IE 10]>
             <p class="chromeframe">Estas usando un navegador <strong>desactualizado</strong>. Por favor <a href="http://browsehappy.com/">actualiza tu navegador</a></p>
@@ -72,6 +72,7 @@ and open the template in the editor.
 
 	<br>
 	<br>
+	<!--
 	<div class="row">
 		<div id="logo">
 			<img src="img/UCA2015.png" alt="UCA logo" height="125px"
@@ -82,8 +83,9 @@ and open the template in the editor.
 			<h5>LABORATORIO DE TECNOLOGIA DE PROCESOS</h5>
 			<h5>Ficha de entrada de materiales</h5>
 		</div>
-	</div>
-	<div id="wrapper" class="row">
+	</div> 
+	-->
+	<div id="wrapper2" class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8 well">
 			<form id="nuevoMaterial" class="form-horizontal" method="post">
@@ -197,6 +199,79 @@ and open the template in the editor.
 			</form>
 		</div>
 		<div class="col-md-2"></div>
+	</div>
+	
+	<div class="row">
+		<table class="table table-condensed scroll" style = ''>
+			<tr>
+				<th> Material </th>
+				<th> Marca </th>
+				<th> Proveedor </th>
+				<th> Estado </th>
+				<th> Categoria </th>
+				<th> SubCategoria </th>
+				<th> Entrada Por </th>
+				<th> Detalle entrada</th>
+				<th> Fecha </th>
+				<th> Ubicacion </th>
+			</tr>
+			<s:iterator value="materiales">
+				<tr>
+					<td>
+						<s:property value = "nombre" />
+					</td>
+					<td>
+						<s:property value = "marca.nombre" />
+					</td> 
+					<td>
+						<s:property value = "proveedor.nombre" />
+					</td> 
+					<td>
+						<s:if test = "estado ==  1" >
+							Nuevo
+						</s:if>
+						<s:elseif test="estado == 2">
+							Prestado
+						</s:elseif>
+						<s:elseif test="estado == 2">
+							Desechado
+						</s:elseif>
+						<s:else>
+							Desnocido
+						</s:else>
+					</td> 
+					<td>
+						<s:property value = "tipoMaterial.categoria.nombre" />
+					</td>
+					<td>
+						<s:property value = "tipoMaterial.subCategoria.nombre" />
+					</td>
+					<td>
+						<s:if test = " tipoEntrada ==  1" >
+							Donación 
+						</s:if>
+						<s:elseif test="tipoEntrada == 2">
+							Compra
+						</s:elseif>
+					</td>
+					<td>
+						<s:if test="detalleEntrada == null || detalleEntrada == \"\"">
+							Sin Información
+						</s:if>
+						<s:property value ="detalleEntrada"/>
+					</td>
+					<td>
+						<s:property value ="entrada"/>
+					</td>
+					<td>
+						<s:if test="ubicacion == null || ubicacion == \"\" ">
+							Sin Información
+						</s:if>
+						<s:property value ="ubicacion"/>
+					</td>
+				</tr>
+			</s:iterator>
+		</table>
 	</div>
 
 	<script type="text/javascript" src="js/subCategoria.js"></script>
